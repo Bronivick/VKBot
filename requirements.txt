@@ -1,0 +1,27 @@
+# Асинхронный бот на базе aiogram
+aiogram==3.6.0
+
+# Асинхронный HTTP-клиент
+httpx==0.24.1
+
+# Асинхронный драйвер для PostgreSQL
+asyncpg==0.27.0
+
+# Асинхронная версия SQLAlchemy с поддержкой asyncio
+SQLAlchemy[asyncio]==2.0.19
+
+# Загрузка переменных окружения из .env
+python-dotenv==1.0.0
+
+# Работа с изображениями
+Pillow==9.5.0
+
+# Фреймворк для распознавания лиц
+facenet-pytorch==2.5.2
+
+# PyTorch (и torchvision, если требуется)
+--extra-index-url https://download.pytorch.org/whl/cu117
+torch==2.0.0+cu117
+torchvision==0.15.0+cu117
+
+numpy<2.0.0
