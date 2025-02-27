@@ -1,4 +1,8 @@
-# db/async_search_engine.py
+"""
+Модуль async_search_engine.py
+
+Асинхронный поиск совпадений по эмбеддингам лиц.
+"""
 import torch
 from db.models.models import Photo
 from logger import logger
@@ -19,6 +23,6 @@ async def search_face(input_embedding, session):
     for photo in photos:
         stored_emb = photo.embedding
         distance = compute_distance(input_emb_list, stored_emb)
-        if distance < 0.9:  # порог, возможно, подберется экспериментально
+        if distance < 0.65: 
             matches.append((photo, distance))
     return sorted(matches, key=lambda x: x[1])

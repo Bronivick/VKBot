@@ -1,3 +1,12 @@
+"""
+Модуль async_engine.py
+
+Создаёт асинхронный движок SQLAlchemy и предоставляет фабрику асинхронных сессий.
+
+Переменная окружения:
+    DATABASE_URL: строка подключения к базе данных, например:
+        "postgresql+asyncpg://username:password@db:5432/vkfaces"
+"""
 import os
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker

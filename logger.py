@@ -1,3 +1,8 @@
+"""
+Модуль logger_config.py
+
+Настройка логгера для проекта.
+"""
 import logging
 
 logging.basicConfig(

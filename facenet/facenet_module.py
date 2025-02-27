@@ -1,3 +1,8 @@
+"""
+Модуль facenet_module.py
+
+Обертка для FaceNet с использованием facenet-pytorch для детекции и извлечения эмбеддингов лиц.
+"""
 import torch
 from facenet_pytorch import MTCNN, InceptionResnetV1
 from torchvision import transforms
@@ -43,7 +48,6 @@ class FaceNet:
         face_tensor = face_tensor.to(self.device)
         with torch.no_grad():
             embedding = self.resnet(face_tensor)
-            # Если по какой-то причине эмбеддинг оказался скаляром (ndim==0) или одномерным, приводим к виду [1, D]
             if embedding.ndim == 0:
                 embedding = embedding.unsqueeze(0)
             elif embedding.ndim == 1:

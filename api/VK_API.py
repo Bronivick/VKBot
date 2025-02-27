@@ -1,3 +1,8 @@
+"""
+Модуль vk_api.py
+
+Асинхронный класс для работы с VK API с использованием httpx.
+"""
 from logger import logger
 
 from time import sleep
@@ -57,7 +62,8 @@ class VkAPI:
         _post_data, api = self._predict_data(token)
         method = 'photos.get'
         _post_data['owner_id'] = -owner_id  # Отрицательный ID для сообществ
-        _post_data['album_id'] = album_id
+        _post_data['album_id'] = album_id  # Теперь "wall" будет подставляться автоматически 
+        _post_data['count'] = 1000
         response = await self.VKRequest(api=api, method=method, data=_post_data)
         if 'error' in response:
             raise Exception(f"Ошибка: {response['error']}")

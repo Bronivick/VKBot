@@ -1,13 +1,11 @@
 
-from aiogram import types, F
+from aiogram import types, F, Router
 from aiogram.filters import Command
 from logger import logger
 from facenet.facenet_module import FaceNet
 
 
-
-
-# Инициализация FaceNet (если он синхронный, его можно оставить таким же)
+router = Router()
 face_net = FaceNet()
 
 async def start_handler(message: types.Message):
@@ -23,6 +21,12 @@ async def help_handler(message: types.Message):
     )
     await message.answer(help_text)
 
+async def photo_command_handler(message: types.Message):
+    """
+    Хендлер для команды /photo.
+    Здесь мы просто просим пользователя отправить фото.
+    """
+    await message.answer("Пришли мне фото — я попробую найти совпадения.")
 
 # Обработчик для текстовых сообщений (если не команда и не фото)
 async def text_handler(message: types.Message):
@@ -42,4 +46,5 @@ def register_handlers(dp):
     dp.message.register(help_handler, Command("help"))
     dp.message.register(text_handler, F.text & ~F.text.startswith("/"))
     dp.errors.register(error_handler)
+    dp.message.register(photo_command_handler, F.text)
 
